@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobMatrix - Resume Matching</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #4f46e5;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f0f9ff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            height: 40px;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 0 50px;
+        }
+
+        .matching-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .matching-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .matching-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .matching-header p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .input-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .input-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
+        }
+
+        .input-card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-card h2 svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+        }
+
+        .input-method {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px dashed #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .input-option:hover {
+            border-color: var(--primary);
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+
+        .input-option input[type="file"] {
+            display: none;
+        }
+
+        .input-option label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.85rem;
+        }
+
+        .input-option svg {
+            width: 18px;
+            height: 18px;
+            color: var(--primary);
+        }
+
+        .text-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            resize: vertical;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 5px 0;
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        .action-area {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        /* Flash Messages */
+        .flash-message {
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #fee2e2;
+            color: #b91c1c;
+            font-size: 0.9rem;
+        }
+
+        /* File name display */
+        .file-name {
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-top: 5px;
+            padding-left: 5px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 80px 0 30px;
+            }
+
+            .matching-container {
+                padding: 20px;
+            }
+
+            .matching-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navbar -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">JobMatrix</a>
+                <div class="nav-links">
+                    <a href="/#features">Features</a>
+                    <a href="/#how-it-works">How It Works</a>
+                    <a href="/#team">Team</a>
+                    <a href="/" class="btn">Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="matching-container">
+                <div class="matching-header">
+                    <h1>Find Your Perfect Candidate Match</h1>
+                    <p>Upload your job description and candidate resumes to find the top matches instantly</p>
+                </div>
+
+                {% if get_flashed_messages() %}
+                <div class="flash-message">
+                    {% for message in get_flashed_messages() %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <form action="{{ url_for('match_resumes') }}" method="POST" enctype="multipart/form-data">
+                    <div class="input-grid">
+                        <!-- Job Description Card -->
+                        <div class="input-card">
+                            <h2>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                                Job Description
+                            </h2>
+                            <div class="input-method">
+                                <div class="input-option">
+                                    <input type="file" id="jd-file" name="jd-file" accept=".pdf,.doc,.docx,.txt">
+                                    <label for="jd-file">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                        </svg>
+                                        Upload Job Description
+                                    </label>
+                                </div>
+                                <div id="jd-file-name" class="file-name"></div>
+                                <div class="divider">OR</div>
+                                <label>
+                                    <textarea class="text-input" name="jd-text" placeholder="Paste job description text here..."></textarea>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Resumes Card -->
+                        <div class="input-card">
+                            <h2>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                Candidate Resumes
+                            </h2>
+                            <div class="input-method">
+                                <div class="input-option">
+                                    <input type="file" id="resumes-file" name="resumes-file" accept=".pdf,.doc,.docx,.txt" multiple>
+                                    <label for="resumes-file">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                        </svg>
+                                        Upload Multiple Resumes
+                                    </label>
+                                </div>
+                                <div id="resume-files-count" class="file-name"></div>
+                                <div class="divider">SUPPORTED FORMATS: PDF, DOC, DOCX, TXT</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-area">
+                        <button type="submit" class="btn">Match Resumes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Display selected file names
+        document.getElementById('jd-file').addEventListener('change', function() {
+            if (this.files.length > 0) {
+                document.getElementById('jd-file-name').textContent = 'Selected: ' + this.files[0].name;
+            } else {
+                document.getElementById('jd-file-name').textContent = '';
+            }
+        });
+
+        document.getElementById('resumes-file').addEventListener('change', function() {
+            if (this.files.length > 0) {
+                document.getElementById('resume-files-count').textContent =
+                    'Selected: ' + this.files.length + ' file(s)';
+            } else {
+                document.getElementById('resume-files-count').textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>

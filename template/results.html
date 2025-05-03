@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobMatrix - Matching Results</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #4f46e5;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f0f9ff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            height: 40px;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 100px 0 50px;
+        }
+
+        .results-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .results-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .results-header p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .job-description {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .job-description h2 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .job-description h2 svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+        }
+
+        .job-description-text {
+            font-size: 0.9rem;
+            color: var(--gray);
+            white-space: pre-line;
+        }
+
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .result-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .result-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
+        }
+
+        .result-score {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .result-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            padding-right: 100px; /* Space for the score badge */
+            color: var(--dark);
+        }
+
+        .result-content {
+            font-size: 0.9rem;
+            color: var(--gray);
+            white-space: pre-line;
+            margin-top: 15px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+        }
+
+        .result-ranking {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        .action-area {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Score color variants */
+        .score-excellent {
+            background-color: var(--success);
+        }
+
+        .score-good {
+            background-color: var(--primary);
+        }
+
+        .score-fair {
+            background-color: var(--warning);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 80px 0 30px;
+            }
+
+            .results-container {
+                padding: 20px;
+            }
+
+            .results-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .result-card h3 {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .result-score {
+                top: 40px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navbar -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">JobMatrix</a>
+                <div class="nav-links">
+                    <a href="/#features">Features</a>
+                    <a href="/#how-it-works">How It Works</a>
+                    <a href="/#team">Team</a>
+                    <a href="/match" class="btn">Try Again</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="results-container">
+                <div class="results-header">
+                    <h1>Top 5 Resume Matches</h1>
+                    <p>We've analyzed your job description and candidate resumes to find the best matches</p>
+                </div>
+
+                <div class="job-description">
+                    <h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                        Job Description
+                    </h2>
+                    <div class="job-description-text">{{ job_description }}</div>
+                </div>
+
+                <div class="results-list">
+                    {% for result in results %}
+                    <div class="result-card">
+                        <div class="result-score {% if result.score|float >= 80 %}score-excellent{% elif result.score|float >= 60 %}score-good{% else %}score-fair{% endif %}">
+                            {{ result.score }}
+                        </div>
+                        <h3>
+                            <span class="result-ranking">{{ loop.index }}</span>
+                            {{ result.name }}
+                        </h3>
+                        <div class="result-content">{{ result.content }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="action-area">
+                    <a href="/match" class="btn">Try Another Match</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Convert score strings to numbers for styling
+        document.querySelectorAll('.result-score').forEach(scoreElement => {
+            const scoreText = scoreElement.textContent.trim();
+            const scoreValue = parseFloat(scoreText);
+
+            if (scoreValue >= 80) {
+                scoreElement.classList.add('score-excellent');
+            } else if (scoreValue >= 60) {
+                scoreElement.classList.add('score-good');
+            } else {
+                scoreElement.classList.add('score-fair');
+            }
+        });
+    </script>
+</body>
+</html>
