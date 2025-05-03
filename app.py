@@ -68,6 +68,15 @@ def home():
     # Serve the main landing page
     return render_template('index.html')
 
+@app.route('/learn')
+def learn():
+    # Serve the learning page
+    return render_template('learn.html')
+
+@app.route('/about')
+def about():
+    # Serve the About page
+    return render_template('about.html')
 
 @app.route('/match', methods=['GET', 'POST'])
 def match_resumes():
