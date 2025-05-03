@@ -1,0 +1,14 @@
+Kashish Yadav
+Email: kashish.yadav@email.com | LinkedIn: linkedin.com/in/kashishyadav | GitHub: github.com/kyadav
+Full Stack Developer with 4+ years of experience in front-end and back-end development. Proficient in JavaScript, React, and Node.js, with a deep understanding of Agile methodologies. Adept at designing scalable cloud-based applications and integrating APIs.
+
+Professional Experience:
+- Designed and developed user interfaces with React, enhancing UX by 30%.
+- Built and maintained RESTful APIs using Node.js for seamless data exchange.
+- Managed cloud infrastructure on Azure, ensuring application scalability and performance.
+
+Skills:
+- Programming: JavaScript, Python
+- Front-End: React, HTML, CSS
+- Cloud Platforms: Azure, Google Cloud
+- Databases: MongoDB, MySQL

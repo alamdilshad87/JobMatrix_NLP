@@ -1,0 +1,14 @@
+Prachi Singhal
+Email: prachi.singhal@email.com | LinkedIn: linkedin.com/in/prachisinghal | GitHub: github.com/psinghal
+Software Engineer with 4 years of experience in cloud application development and API integration. Strong knowledge of Agile methodologies and version control systems. Adept in cloud platforms and database management with a focus on performance and scalability.
+
+Professional Experience:
+- Developed and optimized cloud-based applications on Google Cloud Platform.
+- Integrated APIs for seamless data communication across systems.
+- Participated in Agile development sprints to ensure project milestones.
+
+Skills:
+- Programming: Python, Java, C++
+- Cloud Platforms: Google Cloud, AWS
+- Version Control: Git, GitHub
+- Databases: MySQL, MongoDB

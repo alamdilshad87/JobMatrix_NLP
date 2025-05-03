@@ -1,0 +1,14 @@
+Saatvik Agnihotri
+Email: saatvik.agnihotri@email.com | LinkedIn: linkedin.com/in/saatvikagnihotri | GitHub: github.com/sagnihotri
+Backend Developer with 5 years of experience in building secure and high-performance web applications. Strong expertise in Java, Python, and cloud infrastructure. Proficient in Agile and Scrum methodologies to ensure timely project delivery.
+
+Professional Experience:
+- Built and maintained scalable APIs using Java and Flask.
+- Managed cloud infrastructure on AWS, improving system uptime by 20%.
+- Collaborated with front-end teams to enhance application performance.
+
+Skills:
+- Programming: Java, Python, C++
+- Cloud Platforms: AWS, Google Cloud
+- Version Control: Git, GitHub
+- Databases: PostgreSQL, MongoDB

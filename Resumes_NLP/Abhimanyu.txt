@@ -1,0 +1,14 @@
+Abhimanyu Singh
+Email: abhimanyu.singh@email.com | LinkedIn: linkedin.com/in/abhimanyusingh | GitHub: github.com/asingh
+Software Developer with 3+ years of experience in backend development and database management. Skilled in Java, C++, and Flask, with a strong focus on building secure and optimized APIs. Hands-on experience with cloud platforms and version control systems.
+
+Professional Experience:
+- Developed and maintained APIs using Flask, ensuring seamless backend operations.
+- Worked with cross-functional teams to optimize application performance and security.
+- Configured cloud infrastructure on AWS, enhancing system scalability.
+
+Skills:
+- Programming: Java, C++, Python
+- Version Control: Git, GitHub
+- Cloud Platforms: AWS, Google Cloud
+- Databases: PostgreSQL, MySQL

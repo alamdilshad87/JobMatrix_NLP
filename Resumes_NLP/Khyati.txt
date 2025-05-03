@@ -1,0 +1,14 @@
+Khyati Tandon
+Email: khyati.tandon@email.com | LinkedIn: linkedin.com/in/khyatitandon | GitHub: github.com/ktandon
+Software Engineer with 4 years of experience in software development, cloud platforms, and version control. Skilled in building robust applications and APIs with a focus on maintaining scalability and security.
+
+Professional Experience:
+- Developed and maintained high-performance APIs with Flask.
+- Managed cloud infrastructure on Azure, enhancing application availability.
+- Participated in Agile sprints, ensuring smooth development cycles.
+
+Skills:
+- Programming: Python, Java, C++
+- Cloud Platforms: Azure, Google Cloud
+- Version Control: Git, GitHub
+- Databases: MongoDB, MySQL

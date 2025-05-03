@@ -1,0 +1,39 @@
+Anupam Yadava
+Email: anupam.yadava@email.com
+LinkedIn: linkedin.com/in/anupamyadava
+GitHub: github.com/anupamy
+
+Objective:
+Software Engineer with 3+ years of experience in software development, proficient in Python, Java, and C++. Adept at collaborating with cross-functional teams, ensuring high-quality software applications, and implementing best practices in Agile/Scrum environments. Strong knowledge of cloud platforms and database management with expertise in version control systems.
+
+Professional Experience:
+
+Software Engineer
+Tech Solutions Pvt. Ltd., Bangalore
+June 2021 – Present
+- Developed, tested, and maintained high-quality software applications.
+- Collaborated with product managers and designers to define and implement new features.
+- Troubleshot, debugged, and resolved software defects efficiently.
+- Participated in code reviews to ensure adherence to code quality and best practices.
+- Continuously explored and applied new technologies to improve system performance and scalability.
+
+Technical Skills:
+- Programming Languages: Python, Java, C++
+- Software Development Methodologies: Agile/Scrum
+- Version Control Systems: Git, GitHub
+- Cloud Platforms: AWS, Google Cloud, Azure
+- Front-End Technologies: HTML, CSS, JavaScript
+- Databases: MySQL, PostgreSQL, MongoDB
+
+Education:
+Bachelor’s Degree in Computer Science and Engineering
+XYZ University, 2021
+
+Certifications:
+- AWS Certified Developer – Associate
+- Google Cloud Professional Developer
+
+Achievements:
+- Improved system performance by 20% through optimized API integrations.
+- Successfully led Agile sprints to deliver key project milestones on time.
+

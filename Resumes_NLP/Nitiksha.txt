@@ -1,0 +1,14 @@
+Nitiksha Thakur
+Email: nitiksha.thakur@email.com | LinkedIn: linkedin.com/in/nitikshathakur | GitHub: github.com/nthakur
+Application Developer with 3+ years of experience in developing scalable web applications. Hands-on expertise in Python, Java, and C++, with a focus on cloud deployments and secure API development.
+
+Professional Experience:
+- Developed REST APIs using Flask, ensuring high application efficiency.
+- Configured and optimized AWS cloud infrastructure for scalability.
+- Worked with Agile teams to ensure timely project delivery.
+
+Skills:
+- Programming: Python, Java, C++
+- Cloud Platforms: AWS, Azure
+- Version Control: Git, GitHub
+- Databases: MySQL, PostgreSQL
