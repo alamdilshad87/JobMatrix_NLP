@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}JobMatrix — Resume matching{% endblock %}</title>
+    <meta name="description" content="{% block description %}JobMatrix ranks resumes against a job description using TF-IDF and cosine similarity, and shows which keywords each candidate matches or misses.{% endblock %}">
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="{{ url_for('static', filename='icons/favicon.ico') }}" sizes="48x48">
+    <link rel="icon" href="{{ url_for('static', filename='icons/favicon.svg') }}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="JobMatrix">
+    <meta property="og:title" content="{{ self.title() }}">
+    <meta property="og:description" content="{{ self.description() }}">
+    <meta property="og:image" content="{{ url_for('static', filename='icons/og-image.png', _external=True) }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <a href="#main" class="skip">Skip to content</a>
+    {% set active = request.endpoint %}
+    <header class="site-header" id="site-header">
+        <div class="container">
+            <nav class="navbar" aria-label="Main">
+                <a href="{{ url_for('home') }}" class="brand" aria-label="JobMatrix home">
+                    <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+                        <rect x="7" y="7" width="8" height="8" fill="currentColor"/>
+                        <rect x="17.75" y="7.75" width="6.5" height="6.5" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".4"/>
+                        <rect x="7.75" y="17.75" width="6.5" height="6.5" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".4"/>
+                        <rect x="17" y="17" width="8" height="8" fill="currentColor"/>
+                    </svg>
+                    JobMatrix
+                </a>
+                <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+                <div class="nav-links" id="nav-links">
+                    <a href="{{ url_for('home') }}#process">Process</a>
+                    <a href="{{ url_for('learn') }}" class="{{ 'active' if active == 'learn' }}">Method</a>
+                    <a href="{{ url_for('about') }}" class="{{ 'active' if active == 'about' }}">Team</a>
+                    <a href="{{ url_for('match_resumes') }}" class="cta {{ 'active' if active == 'match_resumes' }}"><span class="u">Try it</span> <span class="arrow">→</span></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container foot">
+            <span>JobMatrix © {{ current_year }}</span>
+            <nav aria-label="Footer">
+                <a href="{{ url_for('match_resumes') }}">Try it</a>
+                <a href="{{ url_for('learn') }}">Method</a>
+                <a href="{{ url_for('about') }}">Team</a>
+                <a href="https://github.com/alamdilshad87/JobMatrix_NLP" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/alamdilshad87/" target="_blank" rel="noopener">Contact</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

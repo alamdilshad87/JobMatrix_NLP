@@ -1,431 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn More - JobMatrix AI Resume Matching</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #4f46e5;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --success: #10b981;
-        }
+{% extends "base.html" %}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
+{% block title %}Method — JobMatrix{% endblock %}
 
-        body {
-            color: var(--dark);
-            line-height: 1.6;
-            background-color: var(--light);
-        }
+{% block content %}
+<section class="page-head">
+    <div class="container">
+        <span class="mono">Method</span>
+        <h1 class="display lines"><span><span>How a resume</span></span><span><span><em>becomes a score.</em></span></span></h1>
+    </div>
+</section>
 
-        /* Navbar Styles */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 24px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            height: 48px;
-        }
-
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Content Sections */
-        .content-section {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            padding: 50px;
-            margin-bottom: 40px;
-        }
-
-        .content-section h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .content-section h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--primary);
-        }
-
-        .content-section p {
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .content-section ul {
-            margin-bottom: 25px;
-            padding-left: 20px;
-        }
-
-        .content-section li {
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-
-        .content-section .highlight {
-            background-color: rgba(37, 99, 235, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-
-        /* Hero Section */
-        .learn-hero {
-            padding: 180px 0 80px;
-            text-align: center;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
-        }
-
-        .learn-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .learn-hero p {
-            font-size: 1.25rem;
-            color: var(--gray);
-            max-width: 800px;
-            margin: 0 auto 40px;
-        }
-
-        /* Footer Styles */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 80px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            position: relative;
-            color: white;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 30px;
-            height: 2px;
-            background-color: var(--primary);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            text-decoration: none;
-            color: #cbd5e1;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .footer-social a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s;
-        }
-
-        .footer-social a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 0;
-            }
-
-            .nav-links {
-                gap: 15px;
-            }
-
-            section {
-                padding: 80px 0;
-            }
-
-            .learn-hero {
-                padding: 140px 0 60px;
-            }
-
-            .learn-hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .content-section {
-                padding: 30px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-column h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .footer-social {
-                justify-content: center;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header with Navbar -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="/" class="logo">JobMatrix</a>
-                <div class="nav-links">
-                    <a href="/#features">Features</a>
-                    <a href="/#how-it-works">How It Works</a>
-                    <a href="/#team">Team</a>
-                    <a href="/match" class="btn">Try Now</a>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="learn-hero">
-        <div class="container">
-            <h1>Deep Dive into JobMatrix Technology</h1>
-            <p>Understanding the AI-powered resume matching system that's transforming recruitment</p>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <section>
-        <div class="container">
-            <div class="content-section">
-                <h3>Project Objective</h3>
-                <p>The primary objective of this project is to develop an intelligent Resume Matching System that automates the process of evaluating resumes against a given job description using Natural Language Processing (NLP) techniques. By leveraging TF-IDF and cosine similarity, the system aims to provide an accurate, unbiased, and efficient method to assist recruiters in shortlisting candidates. This section breaks down the objectives into multiple focused components:</p>
-
-                <h4>1. Efficient Resume Screening</h4>
-                <p>One of the biggest challenges in recruitment is the volume of resumes received for each job posting. Manually reviewing hundreds of applications is time-consuming and prone to oversight.</p>
-                <p><strong>Objective:</strong> To automate the screening process so that resumes are instantly analyzed and matched against job descriptions, saving time and effort for HR teams.</p>
-
-                <h4>2. Content-Based Matching Using NLP</h4>
-                <p>Traditional keyword-based filtering is often limited and superficial. This system goes deeper by using <span class="highlight">TF-IDF (Term Frequency-Inverse Document Frequency)</span> to determine the importance of words in each resume and <span class="highlight">cosine similarity</span> to measure how well each document aligns with the job description.</p>
-                <p><strong>Objective:</strong> To create a smart and meaningful comparison between job roles and resumes based on actual content and context.</p>
-
-                <h4>3. Multi-Format File Processing</h4>
-                <p>Candidates submit resumes in various formats like PDF, DOCX, TXT, and CSV. Many systems struggle to handle such diversity.</p>
-                <p><strong>Objective:</strong> To build a flexible text extraction and processing pipeline that can work with multiple resume file types without compromising data quality.</p>
-
-                <h4>4. Result Ranking and Visualization</h4>
-                <p>Recruiters need actionable insights, not raw data. Simply analyzing resumes is not enough—the system must also rank and present results clearly.</p>
-                <p><strong>Objective:</strong> To generate a ranked list of the top 5 resumes, each accompanied by a similarity percentage, making it easy for users to interpret results and make hiring decisions.</p>
-
-                <h4>5. Scalability and Future Enhancements</h4>
-                <p>While the current implementation focuses on TF-IDF and cosine similarity, future goals include integrating semantic matching using deep learning (e.g., BERT), database integration for storing candidate history, and authentication features for secure multi-user access.</p>
-                <p><strong>Objective:</strong> To lay a scalable foundation that can evolve into a full-fledged recruitment platform with advanced AI capabilities.</p>
-
-                <p>The objective of this project is not just to build a resume matcher but to modernize the recruitment process—making it faster, smarter, and fairer through automation, intelligent text analysis, and user-friendly design.</p>
-            </div>
-
-            <div class="content-section">
-                <h3>Project Abstract</h3>
-                <p>The process of recruiting the right candidate for a job role has traditionally been a manual, time-intensive, and often subjective task. With the increasing volume of job applications and the pressure to hire efficiently, there is a growing need for intelligent systems that can automate and improve the candidate selection process.</p>
-
-                <p>This project introduces a <span class="highlight">Resume Matching System</span> that utilizes <span class="highlight">Natural Language Processing (NLP)</span> techniques—specifically <span class="highlight">TF-IDF (Term Frequency-Inverse Document Frequency)</span> and <span class="highlight">cosine similarity</span>—to streamline the comparison of resumes against a job description.</p>
-
-                <p>The system is designed to accept various file formats including <span class="highlight">PDF, DOCX, TXT, and CSV</span>. It extracts text from each resume, cleans and processes the data, and converts both the job description and resumes into numerical vectors using TF-IDF. Cosine similarity is then applied to measure the degree of match between the job requirements and each candidate's profile.</p>
-
-                <p>The top five most relevant resumes are displayed, each with a matching percentage. This solution not only speeds up the screening process but also reduces human bias and enhances accuracy. It represents a scalable, efficient, and content-focused approach to modern hiring challenges.</p>
-
-                <p>The project serves as a foundation for future enhancements such as semantic analysis, database integration, user authentication, and intelligent dashboards for real-time analysis.</p>
+<section>
+    <div class="container">
+        <div class="article rule" style="padding-top:28px">
+            <span class="side-label mono muted">01 — Why</span>
+            <div class="body reveal">
+                <p>A single job post can draw hundreds of applications. Reading them by hand is slow, and the two-hundredth resume rarely gets the attention the fifth one did.</p>
+                <p>JobMatrix does the <strong>first pass</strong>. It reads every resume, compares each one to the job description with <strong>the same rules every time</strong>, and puts the closest matches on top. People still make the decision; they just start from a shorter list.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer Section -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Product</h3>
-                    <ul class="footer-links">
-                        <li><a href="/#features">Features</a></li>
-                        <li><a href="/#how-it-works">How It Works</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="/#team">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 JobMatrix. All rights reserved.</p>
+<section class="section">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="mono label muted">02 — Pipeline</span>
+            <h2 class="h2">File in,<br>score out.</h2>
+            <p>Everything happens in memory. Files are deleted as soon as their text is extracted.</p>
+        </div>
+        <div class="reveal">
+            <div class="row"><span class="idx mono muted">Extract</span><h3 class="ttl h3">Read the text</h3><p class="txt">PyPDF2 for PDFs, docx2txt for Word documents, plain read for TXT.</p></div>
+            <div class="row"><span class="idx mono muted">Clean</span><h3 class="ttl h3">Strip the noise</h3><p class="txt">Lowercase, split into words, drop common English stop words such as "the" and "and".</p></div>
+            <div class="row"><span class="idx mono muted">Vectorize</span><h3 class="ttl h3">Weigh each word</h3><p class="txt">The job and every resume become TF-IDF vectors, one weight per word.</p></div>
+            <div class="row"><span class="idx mono muted">Compare</span><h3 class="ttl h3">Measure the angle</h3><p class="txt">Cosine similarity between the job vector and each resume vector gives the score.</p></div>
+            <div class="row"><span class="idx mono muted">Rank</span><h3 class="ttl h3">Keep the top five</h3><p class="txt">Sorted by score, with the job's key terms each resume matches and misses.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="article rule" style="padding-top:28px">
+            <span class="side-label mono muted">03 — TF-IDF</span>
+            <div class="body reveal">
+                <p>How much does a word matter? It scores high when it appears often in one document but rarely across the others. "Kubernetes" in a DevOps role carries far more weight than "team".</p>
+                <div class="formula">tf-idf(<i>t</i>, <i>d</i>) = tf(<i>t</i>, <i>d</i>) × log <span class="frac"><span>N</span><span>df(<i>t</i>)</span></span></div>
+                <dl class="defs">
+                    <dt>tf(t, d)</dt><dd>How often term t appears in document d</dd>
+                    <dt>N</dt><dd>Total documents: the job plus every resume</dd>
+                    <dt>df(t)</dt><dd>How many documents contain term t</dd>
+                </dl>
             </div>
         </div>
-    </footer>
-</body>
-</html>
+
+        <div class="article rule" style="padding-top:28px;margin-top:clamp(80px,10vw,140px)">
+            <span class="side-label mono muted">04 — Cosine similarity</span>
+            <div class="body reveal">
+                <p>How close are two documents? Treat each as an arrow in word-space. The smaller the angle between the job and a resume, the better the fit.</p>
+                <div class="formula">cos θ = <span class="frac"><span>A · B</span><span>‖A‖ ‖B‖</span></span></div>
+                <dl class="defs">
+                    <dt>A · B</dt><dd>Dot product of the job and resume vectors</dd>
+                    <dt>‖A‖ ‖B‖</dt><dd>The length of each vector</dd>
+                    <dt>0 to 1</dt><dd>Nothing in common, to identical wording</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="mono label muted">05 — Limits</span>
+            <h2 class="h2">What it does,<br>and what it doesn't.</h2>
+        </div>
+        <div class="two reveal">
+            <div>
+                <h3 class="h3">Good at</h3>
+                <ul>
+                    <li>Fast, consistent first-pass screening of large batches</li>
+                    <li>Finding resumes that cover the role's specific tools and skills</li>
+                    <li>Scores you can explain, keyword by keyword</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="h3">Not yet</h3>
+                <ul>
+                    <li>Synonyms: "ML" and "machine learning" count as different words</li>
+                    <li>Scanned, image-only PDFs</li>
+                    <li>Judging seniority or quality, only word overlap</li>
+                    <li class="muted">Next: semantic matching with sentence embeddings</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="closing">
+    <div class="container reveal">
+        <h2 class="display">Try it.</h2>
+        <a href="{{ url_for('match_resumes') }}" class="btn">Rank resumes <span class="arrow">→</span></a>
+    </div>
+</section>
+{% endblock %}

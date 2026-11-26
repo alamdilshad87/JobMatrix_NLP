@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bg { fill: #0a0a0a; } .fg { fill: #fafaf9; } .ln { fill: none; stroke: #fafaf9; stroke-width: 1.5; opacity: .45; }
+    @media (prefers-color-scheme: dark) { .bg { fill: #fafaf9; } .fg { fill: #0a0a0a; } .ln { stroke: #0a0a0a; } }
+  </style>
+  <rect class="bg" width="32" height="32" rx="7"/>
+  <rect class="fg" x="7" y="7" width="8" height="8"/>
+  <rect class="ln" x="17.75" y="7.75" width="6.5" height="6.5"/>
+  <rect class="ln" x="7.75" y="17.75" width="6.5" height="6.5"/>
+  <rect class="fg" x="17" y="17" width="8" height="8"/>
+</svg>

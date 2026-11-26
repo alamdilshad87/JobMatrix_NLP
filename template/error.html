@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} — JobMatrix{% endblock %}
+
+{% block content %}
+<section class="err">
+    <div class="container">
+        <h1 class="display lines"><span><span>{{ code }}</span></span></h1>
+        <div class="err-foot fade">
+            <span>{{ title }}. <span class="muted">{{ message }}</span></span>
+            <a href="{{ url_for('home') }}"><span class="u on">Back to home</span> <span class="arrow">→</span></a>
+        </div>
+    </div>
+</section>
+{% endblock %}
